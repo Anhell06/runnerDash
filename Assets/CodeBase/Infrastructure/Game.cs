@@ -4,6 +4,6 @@
 
     public Game(ICoroutinRunner coroutinRunner)
     {
-        StateMachine = new GameStateMachine(new SceneLoader(coroutinRunner), coroutinRunner);
+        StateMachine = new GameStateMachine(new SceneLoader(coroutinRunner), coroutinRunner, ServiceLokator.Container);
     }
 }

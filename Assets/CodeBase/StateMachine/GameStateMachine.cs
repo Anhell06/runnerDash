@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameStateMachine
 {
-    private Dictionary<Type, IExitableState> _states;
+    private readonly Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine(SceneLoader sceneLoader, ICoroutinRunner coroutinRunner)
+    public GameStateMachine(SceneLoader sceneLoader, ICoroutinRunner coroutinRunner, ServiceLokator service)
     {
         _states = new Dictionary<Type, IExitableState>
         {
-            [typeof(BootstrapState)] = new BootstrapState(sceneLoader, this),
+            [typeof(BootstrapState)] = new BootstrapState(service, sceneLoader, this),
             [typeof(LoadLevelState)] = new LoadLevelState(sceneLoader, coroutinRunner)
         };
     }
