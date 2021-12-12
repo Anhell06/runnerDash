@@ -1,4 +1,6 @@
-﻿public class BootstrapState : IState
+﻿using Assets.CodeBase.InputService;
+
+public class BootstrapState : IState
 {
     private const string initialLevel = "Initial";
     private const string MainLevel = "Main";
@@ -22,6 +24,8 @@
 
     private void RegisterServices()
     {
+        _service.RegistrateAsSingl<IResourcesProvider>(new ResourcesProvider());
+        _service.RegistrateAsSingl<IInputService>(new InputServiceForMobile(_service.Single<IResourcesProvider>()));
     }
 
     private void EnterLoadLevel()

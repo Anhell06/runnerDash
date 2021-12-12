@@ -1,0 +1,52 @@
+{
+    "name": "InputController",
+    "maps": [
+        {
+            "name": "ForMobile",
+            "id": "6bb6738e-b908-4a5a-8717-620728a6c743",
+            "actions": [
+                {
+                    "name": "StartContact",
+                    "type": "PassThrough",
+                    "id": "a3e4617e-ae30-4dd1-ab6a-ff1d150e37a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "TouchPosition",
+                    "type": "PassThrough",
+                    "id": "56831534-e4bd-466b-8d64-03c4c82ebae4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1e4657ae-a38f-4f00-bde6-e77646399886",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartContact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96d3e6bb-9a02-470a-8ae0-c970144e0a0f",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
