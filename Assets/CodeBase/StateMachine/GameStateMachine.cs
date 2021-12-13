@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.CodeBase.Servises.LevelFactory;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class GameStateMachine
         _states = new Dictionary<Type, IExitableState>
         {
             [typeof(BootstrapState)] = new BootstrapState(service, sceneLoader, this),
-            [typeof(LoadLevelState)] = new LoadLevelState(sceneLoader, coroutinRunner)
+            [typeof(LoadLevelState)] = new LoadLevelState(service.Single<ILevelFactory>(),sceneLoader, coroutinRunner)
         };
     }
 

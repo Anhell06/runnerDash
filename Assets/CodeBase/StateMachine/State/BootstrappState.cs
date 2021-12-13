@@ -1,4 +1,6 @@
 ﻿using Assets.CodeBase.InputService;
+using Assets.CodeBase.Servises.LevelFactory;
+using UnityEngine;
 
 public class BootstrapState : IState
 {
@@ -14,18 +16,26 @@ public class BootstrapState : IState
         _sceneLoader = sceneLoader;
         _stateMachine = stateMachine;
         _service = service;
+        RegisterServices();
     }
 
     public void Enter()
     {
-        RegisterServices();
         _sceneLoader.Load(initialLevel, EnterLoadLevel);
+
     }
 
     private void RegisterServices()
     {
         _service.RegistrateAsSingl<IResourcesProvider>(new ResourcesProvider());
         _service.RegistrateAsSingl<IInputObservableService>(new InputObservableService());
+
+        _service.RegistrateAsSingl<ILevelFactory>(new LevelFactory(
+            _service.Single<IResourcesProvider>(),
+            _service.Single<IInputObservableService>()
+            ));
+
+        Debug.Log(_service.Single<ILevelFactory>());
     }
 
     private void EnterLoadLevel()

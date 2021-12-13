@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Assets.CodeBase.InputService
@@ -34,7 +35,7 @@ namespace Assets.CodeBase.InputService
         private void OnEnable()
         {
             _inputController.Enable();
-            Debug.Log("");
+            Debug.Log(SceneManager.GetActiveScene().name);
         }
 
         private void OnDisable()
