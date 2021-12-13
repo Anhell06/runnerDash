@@ -25,7 +25,7 @@ public class BootstrapState : IState
     private void RegisterServices()
     {
         _service.RegistrateAsSingl<IResourcesProvider>(new ResourcesProvider());
-        _service.RegistrateAsSingl<IInputService>(new InputServiceForMobile(_service.Single<IResourcesProvider>()));
+        _service.RegistrateAsSingl<IInputService>(new InputObservableService(_service.Single<IResourcesProvider>()));
     }
 
     private void EnterLoadLevel()

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Assets.CodeBase.InputService
@@ -15,21 +14,16 @@ namespace Assets.CodeBase.InputService
         private Vector2 _currentTouchPosition;
         private Vector2 _startPosition = Vector2.zero;
         private Vector2 _lastDirection = Vector2.zero;
-        private Vector2 _lastInFourDirection = Vector2.zero;
+        private Vector2 _lastCrossDirection = Vector2.zero;
+        private Vector2[] _crossVectors = new Vector2[4] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
         private bool _isTouch = false;
         private float _timeAfterStartTouch = 0;
+        private IInputObservableService _inputObservable;
 
-        private Action<Vector2> _startSwipeInFourDirection;
-        private Action<Vector2> _startSwipeDirection;
-        private Action<Vector2> _endSwipeInFourDirection;
-        private Action<Vector2> _endSwipeDirection;
 
-        public void Init(Action<Vector2> StartSwipeInFourDirection, Action<Vector2> StartSwipeDirection, Action<Vector2> EndSwipeInFourDirection, Action<Vector2> EndSwipeDirection)
+        public void Constract(IInputObservableService inputObservable)
         {
-            _startSwipeInFourDirection = StartSwipeInFourDirection;
-            _startSwipeDirection = StartSwipeDirection;
-            _endSwipeInFourDirection = EndSwipeInFourDirection;
-            _endSwipeDirection = EndSwipeDirection;
+            _inputObservable = inputObservable;
         }
 
         private void Awake()
@@ -67,35 +61,17 @@ namespace Assets.CodeBase.InputService
             TakeStartPosition();
             UpdateSwipeDirection(_currentTouchPosition, _startPosition);
         }
-
-        private void TakeStartPosition()
-        {
-            _currentTouchPosition = _inputController.ForMobile.TouchPosition.ReadValue<Vector2>();
-        }
-
-        private bool TouchIsStarted()
-        {
-            return _isTouch == false;
-        }
-
+        
         private void UpdateSwipeDirection(Vector2 currentTouchPosition, Vector2 startPosition)
         {
-
-            Vector2 normolizeVector = (currentTouchPosition - startPosition).normalized;
-
-            _startSwipeDirection?.Invoke(normolizeVector);
-            _lastDirection = normolizeVector;
-            Debug.Log(normolizeVector);
-
-            Vector2[] typeVectors = new Vector2[4] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-
-            foreach (Vector2 vector in typeVectors)
+            Vector2 normolizedVector = (currentTouchPosition - startPosition).normalized;
+            
+            foreach (Vector2 crossVector in _crossVectors)
             {
-                if (Vector2.Dot(vector, normolizeVector) > _directionThreshold)
+                if (Vector2.Dot(crossVector, normolizedVector) > _directionThreshold)
                 {
-                    _lastInFourDirection = vector;
-                    _startSwipeInFourDirection?.Invoke(vector);
-                    Debug.Log(vector);
+                    _lastCrossDirection = crossVector;
+                    _inputObservable.NotifyObservers(crossVector, SwipeType.StartCrossSwipe);
                 }
             }
         }
@@ -111,12 +87,13 @@ namespace Assets.CodeBase.InputService
             _isTouch = false;
             _timeAfterStartTouch = 0;
 
-            _endSwipeDirection?.Invoke(_lastDirection);
-            _endSwipeInFourDirection?.Invoke(_lastDirection);
+            _inputObservable.NotifyObservers(_lastCrossDirection, SwipeType.EndCrossSwipe);
 
-            _lastDirection = Vector2.zero;
-            _lastInFourDirection = Vector2.zero;
+            _lastCrossDirection = Vector2.zero;
         }
 
+        private void TakeStartPosition() => _currentTouchPosition = _inputController.ForMobile.TouchPosition.ReadValue<Vector2>();
+
+        private bool TouchIsStarted() => _isTouch == false;
     }
 }
