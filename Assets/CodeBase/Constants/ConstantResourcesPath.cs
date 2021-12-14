@@ -8,6 +8,6 @@ namespace Assets.CodeBase.Constants
 {
     public static class ConstantResourcesPath
     {
-        public static string UIRoot = "Infrastructure/Services/InputSystem";
+        public static string UIRoot = "UIComponent/UIRoot";
     }
 }

@@ -27,12 +27,7 @@ public class LoadLevelState : IStateWithPayLoad<string>
     {
         _levelFactory.LoadHUD();
     }
-
-    private void OnLoad()
-    {
-        throw new NotImplementedException();
-    }
-
+    
     public void Exit()
     {
         throw new NotImplementedException();
