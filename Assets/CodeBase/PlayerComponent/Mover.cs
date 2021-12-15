@@ -1,14 +1,15 @@
+using System;
 using Assets.CodeBase.InputService;
 using UnityEngine;
 
-public class Mover : MonoBehaviour, IInputObserver
+internal class Mover : MonoBehaviour, IInputObserver
 {
     [SerializeField, Range(0, 10f)]
     private float speed = .5f;
 
     private Vector3 _direction = Vector3.zero;
-
-    private void Start()
+    
+    internal void Constract(IInputObservableService inputObservable)
     {
         IInputObservableService _observable = ServiceLokator.Container.Single<IInputObservableService>();
         _observable.AddObserver(this);
@@ -19,15 +20,18 @@ public class Mover : MonoBehaviour, IInputObserver
 
     public void InputUpdate(Vector2 direction, SwipeType swipeType)
     {
-        if (SwipeTypeIsEndCrossSwipe(swipeType) && SwipeIsLeftOrRight(ref direction))
+        if (SwipeTypeIsEndCrossSwipe(swipeType) && !SwipeIsDown(ref direction) && !SwipeIsZero(ref direction))
             _direction = direction;
     }
 
     private static bool SwipeTypeIsEndCrossSwipe(SwipeType swipeType) =>
         swipeType == SwipeType.EndCrossSwipe;
 
-    private static bool SwipeIsLeftOrRight(ref Vector2 direction) =>
-        direction.Equals(Vector2.left) || direction.Equals(Vector2.right);
+    private bool SwipeIsZero(ref Vector2 direction) =>
+        direction.Equals(Vector2.zero);
+
+    private static bool SwipeIsDown(ref Vector2 direction) =>
+        direction.Equals(Vector2.down);
 
 
     private void MoveForvard(Vector3 direction) =>

@@ -20,13 +20,10 @@ public class LoadLevelState : IStateWithPayLoad<string>
 
     private void CreateLevel()
     {
-        CrateUIRoot();
-    }
-
-    private void CrateUIRoot()
-    {
         _levelFactory.LoadHUD();
+        _levelFactory.LoadPlayer();
     }
+    
     
     public void Exit()
     {

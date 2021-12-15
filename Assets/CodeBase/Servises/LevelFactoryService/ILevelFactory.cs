@@ -3,5 +3,6 @@
     public interface ILevelFactory : IService
     {
         void LoadHUD();
+        void LoadPlayer();
     }
 }

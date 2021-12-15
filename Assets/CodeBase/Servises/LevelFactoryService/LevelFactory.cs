@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.InputService;
+using Assets.CodeBase.PlayerComponent;
 using UnityEngine;
 
 namespace Assets.CodeBase.Servises.LevelFactory
@@ -21,6 +22,15 @@ namespace Assets.CodeBase.Servises.LevelFactory
                 .GetComponentInChildren<InputServiceBehaviour>();
 
             UIRoot.Constract(_inputService);
+        }
+
+        public void LoadPlayer()
+        {
+            PlayerMediator Player = _resourcesProvider
+                .InstantiateObject<GameObject>(Constants.ConstantResourcesPath.Player)
+                .GetComponentInChildren<PlayerMediator>();
+
+            Player.Constract(_inputService);
         }
     }
 }

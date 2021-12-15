@@ -9,5 +9,6 @@ namespace Assets.CodeBase.Constants
     public static class ConstantResourcesPath
     {
         public static string UIRoot = "UIComponent/UIRoot";
+        public static string Player = "Player/Player";
     }
 }
