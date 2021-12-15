@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OnePixelSprite
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 2c48af5bfabe55f4e865297143836f82, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.28230685, b: 0.28230685, a: 0.5254902}
   m_Transform:
     e00: 1
     e01: 0

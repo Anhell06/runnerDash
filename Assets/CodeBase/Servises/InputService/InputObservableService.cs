@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.CodeBase.InputService
 {
-    public partial class InputObservableService : IService, IInputObservableService
+    public class InputObservableService : IService, IInputObservableService
     {
         private List<IInputObserver> _inputObservers = new List<IInputObserver>();
         
@@ -21,6 +21,7 @@ namespace Assets.CodeBase.InputService
         {
             foreach (var inputObserver in _inputObservers)
             {
+                Debug.Log($"{direction} {swipeType}");
                 inputObserver.InputUpdate(direction, swipeType);
             }
         }

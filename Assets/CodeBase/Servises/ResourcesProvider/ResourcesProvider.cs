@@ -6,23 +6,17 @@ public class ResourcesProvider : IService, IResourcesProvider
 {
     public TObject InstantiateObject<TObject>(string path) where TObject : Object
     {
-        TObject gameObject = Resources.Load<TObject>(path);
-        Object.Instantiate(gameObject);
-        return gameObject;
+        return Object.Instantiate(Resources.Load<TObject>(path));
     }
 
     public TObject InstantiateObject<TObject>(string path, Vector3 at) where TObject : Object
     {
-        TObject gameObject = Resources.Load<TObject>(path);
-        Object.Instantiate(gameObject, at, Quaternion.identity);
-        return gameObject;
+        return Object.Instantiate(Resources.Load<TObject>(path), at, Quaternion.identity);
     }
 
     public TObject InstantiateObject<TObject>(string path, Vector3 at, Quaternion quaternion) where TObject : Object
     {
-        TObject gameObject = Resources.Load<TObject>(path);
-        Object.Instantiate(gameObject, at, quaternion);
-        return gameObject;
+        return Object.Instantiate(Resources.Load<TObject>(path), at, quaternion);
     }
 
 }

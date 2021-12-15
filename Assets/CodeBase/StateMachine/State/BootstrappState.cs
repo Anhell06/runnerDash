@@ -34,8 +34,6 @@ public class BootstrapState : IState
             _service.Single<IResourcesProvider>(),
             _service.Single<IInputObservableService>()
             ));
-
-        Debug.Log(_service.Single<ILevelFactory>());
     }
 
     private void EnterLoadLevel()

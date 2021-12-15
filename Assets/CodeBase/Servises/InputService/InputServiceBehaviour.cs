@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -35,7 +36,6 @@ namespace Assets.CodeBase.InputService
         private void OnEnable()
         {
             _inputController.Enable();
-            Debug.Log(SceneManager.GetActiveScene().name);
         }
 
         private void OnDisable()
@@ -73,6 +73,9 @@ namespace Assets.CodeBase.InputService
                 {
                     _lastCrossDirection = crossVector;
                     _inputObservable.NotifyObservers(crossVector, SwipeType.StartCrossSwipe);
+
+                    _isTouch = false;
+                    _timeAfterStartTouch = 0;
                 }
             }
         }
@@ -87,7 +90,7 @@ namespace Assets.CodeBase.InputService
         {
             _isTouch = false;
             _timeAfterStartTouch = 0;
-
+            
             _inputObservable.NotifyObservers(_lastCrossDirection, SwipeType.EndCrossSwipe);
 
             _lastCrossDirection = Vector2.zero;
@@ -95,6 +98,6 @@ namespace Assets.CodeBase.InputService
 
         private void TakeStartPosition() => _currentTouchPosition = _inputController.ForMobile.TouchPosition.ReadValue<Vector2>();
 
-        private bool TouchIsStarted() => _isTouch == false;
+        private bool TouchIsStarted() => _isTouch == true;
     }
 }
