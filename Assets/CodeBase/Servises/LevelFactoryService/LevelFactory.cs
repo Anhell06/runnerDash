@@ -26,11 +26,11 @@ namespace Assets.CodeBase.Servises.LevelFactory
 
         public void LoadPlayer()
         {
-            PlayerMediator Player = _resourcesProvider
-                .InstantiateObject<GameObject>(Constants.ConstantResourcesPath.Player)
-                .GetComponentInChildren<PlayerMediator>();
+            GameObject player = _resourcesProvider.InstantiateObject<GameObject>(Constants.ConstantResourcesPath.Player);
+            player.GetComponentInChildren<PlayerMediator>().Constract(_inputService);
 
-            Player.Constract(_inputService);
+            Camera.main.gameObject.AddComponent<CameraFollow>()
+                .Follow(the: player.transform, withOffset: new Vector3(0, 0, -10));
         }
     }
 }
