@@ -17,8 +17,8 @@ namespace Assets.CodeBase.Servises.LevelFactory
 
         public void LoadHUD()
         {
-            InputServiceBehaviour UIRoot = _resourcesProvider
-                .InstantiateObject<GameObject>(Constants.ConstantResourcesPath.UIRoot)
+            InputServiceBehaviour UIRoot = Object.Instantiate(_resourcesProvider
+                .LoadObject<GameObject>(Constants.ConstantResourcesPath.UIRoot))
                 .GetComponentInChildren<InputServiceBehaviour>();
 
             UIRoot.Constract(_inputService);
@@ -26,7 +26,7 @@ namespace Assets.CodeBase.Servises.LevelFactory
 
         public void LoadPlayer()
         {
-            GameObject player = _resourcesProvider.InstantiateObject<GameObject>(Constants.ConstantResourcesPath.Player);
+            GameObject player = Object.Instantiate(_resourcesProvider.LoadObject<GameObject>(Constants.ConstantResourcesPath.Player));
             player.GetComponentInChildren<PlayerMediator>().Constract(_inputService);
 
             Camera.main.gameObject.AddComponent<CameraFollow>()
