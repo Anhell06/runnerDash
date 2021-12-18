@@ -1,5 +1,6 @@
 ﻿using Assets.CodeBase.InputService;
 using Assets.CodeBase.Servises.LevelFactory;
+using Assets.CodeBase.Servises.StaticDataService;
 using UnityEngine;
 
 public class BootstrapState : IState
@@ -34,6 +35,7 @@ public class BootstrapState : IState
             _service.Single<IResourcesProvider>(),
             _service.Single<IInputObservableService>()
             ));
+        _service.RegistrateAsSingl<IStaticDataService>(new StaticDataService());
     }
 
     private void EnterLoadLevel()
