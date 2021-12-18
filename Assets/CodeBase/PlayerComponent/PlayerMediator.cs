@@ -1,34 +1,37 @@
 ﻿using Assets.CodeBase.InputService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.CodeBase.PlayerComponent
 {
     public class PlayerMediator : MonoBehaviour
     {
-        IInputObservableService _inputObservable;
+        private IInputObservableService _inputObservable;
         private Mover _mover;
+        private DeathComponent _death;
+
+        private void Awake()
+        {
+            CollectModule();
+            ConstractModule();
+        }
 
         public void Constract(IInputObservableService inputObservable)
         {
             _inputObservable = inputObservable;
         }
 
-        private void Awake() => CollectModule();
-        private void Start() => ConstractModule();
-        
+        internal void Death() => _mover.enabled = false;
+
         private void CollectModule()
         {
             _mover = gameObject.GetComponent<Mover>();
+            _death = gameObject.GetComponent<DeathComponent>();
         }
 
         private void ConstractModule()
         {
             _mover.Constract(_inputObservable);
+            _death.Constract(this);
         }
     }
 }

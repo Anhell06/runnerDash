@@ -6,7 +6,7 @@ using UnityEngine;
 public class BootstrapState : IState
 {
     private const string initialLevel = "Initial";
-    private const string MainLevel = "Main";
+    private const string MainLevel = "Game";
 
     private SceneLoader _sceneLoader;
     private GameStateMachine _stateMachine;
