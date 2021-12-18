@@ -1,14 +1,15 @@
-using System;
+using Assets.CodeBase.Constants;
 using Assets.CodeBase.InputService;
 using UnityEngine;
 
 internal class Mover : MonoBehaviour, IInputObserver
 {
+    private const float offsetFiled = ConstantOffsetField.offset;
     [SerializeField, Range(0, 10f)]
     private float speed = .5f;
 
-    private Vector3 _direction = Vector3.zero;
-    
+    private Vector3 _direction = Vector3.up;
+
     internal void Constract(IInputObservableService inputObservable)
     {
         IInputObservableService _observable = ServiceLokator.Container.Single<IInputObservableService>();
@@ -20,21 +21,20 @@ internal class Mover : MonoBehaviour, IInputObserver
 
     public void InputUpdate(Vector2 direction, SwipeType swipeType)
     {
-        if (SwipeTypeIsEndCrossSwipe(swipeType) && !SwipeIsDown(ref direction) && !SwipeIsZero(ref direction))
-            _direction = direction;
+        if (SwipeTypeIsEndCrossSwipe(swipeType)) 
+        {
+            if (direction.Equals(Vector2.left) || direction.Equals(Vector2.right))
+                _direction = new Vector3(direction.x * offsetFiled, 0, 0);
+            if (direction.Equals(Vector2.up))
+                _direction = Vector3.up;
+        }
     }
 
     private static bool SwipeTypeIsEndCrossSwipe(SwipeType swipeType) =>
         swipeType == SwipeType.EndCrossSwipe;
 
-    private bool SwipeIsZero(ref Vector2 direction) =>
-        direction.Equals(Vector2.zero);
-
-    private static bool SwipeIsDown(ref Vector2 direction) =>
-        direction.Equals(Vector2.down);
-
 
     private void MoveForvard(Vector3 direction) =>
-        transform.position += (Vector3.up + direction) / 2 * speed * Time.deltaTime;
+        transform.position += (Vector3.up + direction) * speed * Time.deltaTime;
 
 }
