@@ -20,8 +20,6 @@ namespace Assets.CodeBase.PlayerComponent
             _inputObservable = inputObservable;
         }
 
-        internal void Death() => _mover.enabled = false;
-
         private void CollectModule()
         {
             _mover = gameObject.GetComponent<Mover>();
@@ -33,5 +31,7 @@ namespace Assets.CodeBase.PlayerComponent
             _mover.Constract(_inputObservable);
             _death.Constract(this);
         }
+
+        internal void Death() => _mover.enabled = false;
     }
 }
