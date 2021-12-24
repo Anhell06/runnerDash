@@ -1,9 +1,10 @@
 ﻿using Assets.CodeBase.Servises.StaticDataService;
 
-namespace Assets.CodeBase.PlayerComponent
+namespace Assets.CodeBase.BattelField.Item
 {
     internal interface IItem
     {
-        void Colect(IStaticDataService saveData);
+        void Colect();
+        ItemType Type { get; }
     }
 }

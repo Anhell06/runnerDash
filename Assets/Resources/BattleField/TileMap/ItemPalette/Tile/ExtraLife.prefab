@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1222894318983205069}
   - component: {fileID: 2542977781496847694}
   - component: {fileID: -6227774821355018227}
-  - component: {fileID: 7978063228732851890}
+  - component: {fileID: -5921347091613436665}
   m_Layer: 12
   m_Name: ExtraLife
   m_TagString: Untagged
@@ -124,7 +124,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.512, y: 0.512}
   m_EdgeRadius: 0
---- !u!50 &7978063228732851890
+--- !u!50 &-5921347091613436665
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

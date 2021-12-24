@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Assets.CodeBase.BattelField.Item
 {
-    internal class ExtraLife : MonoBehaviour, IItem
+    public class ExtraLife : MonoBehaviour, IItem
     {
-        public void Colect(IStaticDataService saveData)
+        public ItemType Type { get; } = ItemType.Life;
+
+        public void Colect()
         {
             gameObject.SetActive(false);
         }

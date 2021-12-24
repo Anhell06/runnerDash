@@ -21,7 +21,6 @@ namespace Assets.CodeBase.InputService
         {
             foreach (var inputObserver in _inputObservers)
             {
-                Debug.Log($"{direction} {swipeType}");
                 inputObserver.InputUpdate(direction, swipeType);
             }
         }
