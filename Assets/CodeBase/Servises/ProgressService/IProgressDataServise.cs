@@ -2,8 +2,8 @@
 {
     public interface IProgressDataServise : IService
     {
-        void UpdateCollectebelItem(int life, int shield);
-        ColLectebleItemData CollectebleItemData { get; set; }
+        CollectebleItemData CollectebleItemData { get; set; }
         LevelProgressData LevelProgressData { get; set; }
+
     }
 }

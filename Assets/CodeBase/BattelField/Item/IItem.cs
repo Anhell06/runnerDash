@@ -2,7 +2,7 @@
 
 namespace Assets.CodeBase.BattelField.Item
 {
-    internal interface IItem
+    public interface IItem
     {
         void Colect();
         ItemType Type { get; }

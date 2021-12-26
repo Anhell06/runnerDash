@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace Assets.CodeBase.Servises.ProgressService
 {
-    class ProgressDataService : IProgressDataServise
+    internal class ProgressDataService : IProgressDataServise
     {
-        public ColLectebleItemData CollectebleItemData { get; set; }
+        public ProgressDataService()
+        {
+            LoadProgress();
+        }
+
+        public void LoadProgress()
+        {
+            CollectebleItemData = JsonUtility.FromJson<CollectebleItemData>(PlayerPrefs.GetString("Item")) ?? new CollectebleItemData();
+            LevelProgressData = JsonUtility.FromJson<LevelProgressData>(PlayerPrefs.GetString("Level")) ?? new LevelProgressData();
+        }
+
+        public void SaveProgress()
+        {
+            PlayerPrefs.SetString("Item", JsonUtility.ToJson(CollectebleItemData));
+            PlayerPrefs.SetString("Level", JsonUtility.ToJson(LevelProgressData));
+        }
+
+        public CollectebleItemData CollectebleItemData { get; set; }
         public LevelProgressData LevelProgressData { get; set; }
 
-        public void UpdateCollectebelItem(int life, int shield)
-        {
-            CollectebleItemData.Life = life;
-            CollectebleItemData.Shield = shield;
-        }
     }
 }

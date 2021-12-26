@@ -35,8 +35,9 @@ public class BootstrapState : IState
         _service.RegistrateAsSingl<IStaticDataService>(new StaticDataService());
 
         _service.RegistrateAsSingl<ILevelFactory>(new LevelFactory(
+            _service.Single<IInputObservableService>(),
             _service.Single<IResourcesProvider>(),
-            _service.Single<IInputObservableService>()
+            _service.Single<IProgressDataServise>()
             ));
     }
 

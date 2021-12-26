@@ -5,16 +5,17 @@ using UnityEngine;
 
 namespace Assets.CodeBase.PlayerComponent
 {
-    internal class ItemCollectable : MonoBehaviour, ISaveProgress
+    internal class ItemCollectable : MonoBehaviour
     {
         private bool _isTouch;
         private const int _itemLayer = ConstantLayerNuber.ItemLayer;
-        private ColLectebleItemData _bag;
+        private IProgressDataServise _progress;
 
-        private void Start()
+        public void Constract(IProgressDataServise progress)
         {
-            _bag = new ColLectebleItemData();
+            _progress = progress;
         }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!_isTouch && collision.gameObject.layer == _itemLayer)
@@ -29,31 +30,14 @@ namespace Assets.CodeBase.PlayerComponent
         {
             if (colision.TryGetComponent<IItem>(out IItem _item))
             {
+                SaveItemInData(_item);
                 _item.Colect();
-
-                switch (_item.Type)
-                {
-                    case ItemType.Life:
-                        _bag.Life++;
-                        break;
-                    case ItemType.Shield:
-                        _bag.Shield++;
-                        break;
-                    default:
-                        break;
-                }
             }
         }
 
-        public void LoadProgress(IProgressDataServise progress)
+        public void SaveItemInData(IItem item)
         {
-            _bag.Life = progress.CollectebleItemData.Life;
-            _bag.Shield = progress.CollectebleItemData.Shield;
-        }
-
-        public void SaveProgress(IProgressDataServise progress)
-        {
-            progress.UpdateCollectebelItem(life: _bag.Life, shield: _bag.Shield);
+            _progress.CollectebleItemData.Collect(item);
         }
     }
 }
