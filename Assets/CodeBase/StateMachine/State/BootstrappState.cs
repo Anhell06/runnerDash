@@ -10,10 +10,10 @@ public class BootstrapState : IState
     private const string MainLevel = "Game";
 
     private SceneLoader _sceneLoader;
-    private GameStateMachine _stateMachine;
+    private IGameStateMachine _stateMachine;
     private ServiceLokator _service;
 
-    public BootstrapState(ServiceLokator service, SceneLoader sceneLoader, GameStateMachine stateMachine)
+    public BootstrapState(ServiceLokator service, SceneLoader sceneLoader, IGameStateMachine stateMachine)
     {
         _sceneLoader = sceneLoader;
         _stateMachine = stateMachine;

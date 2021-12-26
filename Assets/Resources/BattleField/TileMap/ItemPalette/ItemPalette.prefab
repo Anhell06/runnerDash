@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3442874399174483990}
+  - {fileID: 2238607036334685634}
   m_Father: {fileID: 7840828097179621765}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -188,6 +189,68 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 1
   m_CellSwizzle: 2
+--- !u!1001 &2425844864459024243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6254344450743995423}
+    m_Modifications:
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4329883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520334400942119607, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+      propertyPath: m_Name
+      value: EndLevelTrigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+--- !u!4 &2238607036334685634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4520334400942119601, guid: 1ef33e6345a7b9844b788adbec72b2e1, type: 3}
+  m_PrefabInstance: {fileID: 2425844864459024243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4577559890364119103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,6 +261,10 @@ PrefabInstance:
     - target: {fileID: 439826471780856630, guid: 164196b95d142fa4c8cc975872bef28b, type: 3}
       propertyPath: m_Name
       value: ExtraLife
+      objectReference: {fileID: 0}
+    - target: {fileID: 439826471780856630, guid: 164196b95d142fa4c8cc975872bef28b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1171303628589127721, guid: 164196b95d142fa4c8cc975872bef28b, type: 3}
       propertyPath: m_RootOrder
@@ -254,7 +321,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1171303628589127721, guid: 164196b95d142fa4c8cc975872bef28b, type: 3}
   m_PrefabInstance: {fileID: 4577559890364119103}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &758739924074212820
+--- !u!114 &6265418449214379236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
