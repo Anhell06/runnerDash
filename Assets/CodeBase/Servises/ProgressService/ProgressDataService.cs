@@ -21,6 +21,7 @@ namespace Assets.CodeBase.Servises.ProgressService
             PlayerPrefs.SetString("Level", JsonUtility.ToJson(LevelProgressData));
         }
 
+
         public CollectebleItemData CollectebleItemData { get; set; }
         public LevelProgressData LevelProgressData { get; set; }
 
